@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.Equipo;
 import org.ecodigital.backend.service.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -20,8 +21,13 @@ public class EquipoController {
         return service.listarTodos();
     }
 
+    @GetMapping("/operativos")
+    public List<Equipo> listarOperativos() {
+        return service.listarOperativos();
+    }
+
     @PostMapping
-    public Equipo registrar(@RequestBody Equipo equipo) {
+    public Equipo registrar(@Valid @RequestBody Equipo equipo) {
         return service.guardar(equipo);
     }
 
@@ -31,7 +37,7 @@ public class EquipoController {
     }
 
     @PutMapping
-    public Equipo actualizar(@RequestBody Equipo equipo) {
+    public Equipo actualizar(@Valid @RequestBody Equipo equipo) {
         return service.actualizar(equipo);
     }
 

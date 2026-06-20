@@ -1,6 +1,8 @@
 package org.ecodigital.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,6 +16,7 @@ public class HistorialCambioEstado {
 
     @ManyToOne
     @JoinColumn(name = "equipo_id", nullable = false)
+    @NotNull(message = "El equipo es obligatorio")
     private Equipo equipo;
 
     @ManyToOne
@@ -22,6 +25,7 @@ public class HistorialCambioEstado {
 
     @ManyToOne
     @JoinColumn(name = "estado_nuevo_id", nullable = false)
+    @NotNull(message = "El estado nuevo es obligatorio")
     private EstadoEquipo estadoNuevo;
 
     @Column(name = "fecha_cambio", updatable = false)
@@ -30,8 +34,10 @@ public class HistorialCambioEstado {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id_responsable", nullable = false)
+    @NotNull(message = "El usuario responsable es obligatorio")
     private Usuario usuarioResponsable;
 
+    @Size(max = 255, message = "Las observaciones no deben superar 255 caracteres")
     private String observaciones;
 
     // Getters y Setters

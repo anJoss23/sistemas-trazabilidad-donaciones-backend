@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.InstitucionBeneficiaria;
 import org.ecodigital.backend.service.InstitucionBeneficiariaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,12 +20,12 @@ public class InstitucionBeneficiariaController {
     }
 
     @PostMapping
-    public InstitucionBeneficiaria guardar(@RequestBody InstitucionBeneficiaria inst) {
+    public InstitucionBeneficiaria guardar(@Valid @RequestBody InstitucionBeneficiaria inst) {
         return service.guardar(inst);
     }
 
     @PutMapping
-    public InstitucionBeneficiaria actualizar(@RequestBody InstitucionBeneficiaria inst) {
+    public InstitucionBeneficiaria actualizar(@Valid @RequestBody InstitucionBeneficiaria inst) {
         return service.guardar(inst);
     }
 

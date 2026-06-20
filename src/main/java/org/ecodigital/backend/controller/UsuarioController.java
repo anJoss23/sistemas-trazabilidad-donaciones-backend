@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.Usuario;
 import org.ecodigital.backend.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,12 +27,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario guardar(@RequestBody Usuario u) {
+    public Usuario guardar(@Valid @RequestBody Usuario u) {
         return service.guardar(u);
     }
 
     @PutMapping
-    public Usuario actualizar(@RequestBody Usuario u) {
+    public Usuario actualizar(@Valid @RequestBody Usuario u) {
         return service.guardar(u);
     }
 

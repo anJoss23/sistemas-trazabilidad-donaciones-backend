@@ -10,11 +10,17 @@ import java.util.List;
 @Service
 public class EquipoService {
 
+    private static final String ESTADO_OPERATIVO = "Operativo";
+
     @Autowired
     private EquipoRepository repository;
 
     public List<Equipo> listarTodos() {
         return repository.findAll();
+    }
+
+    public List<Equipo> listarOperativos() {
+        return repository.findByEstadoActualNombreEstadoIgnoreCase(ESTADO_OPERATIVO);
     }
 
     public Equipo guardar(Equipo equipo) {

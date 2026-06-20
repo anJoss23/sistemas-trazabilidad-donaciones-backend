@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.Donante;
 import org.ecodigital.backend.service.DonanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,12 +20,12 @@ public class DonanteController {
     }
 
     @PostMapping
-    public Donante guardar(@RequestBody Donante donante) {
+    public Donante guardar(@Valid @RequestBody Donante donante) {
         return service.guardar(donante);
     }
 
     @PutMapping
-    public Donante actualizar(@RequestBody Donante donante) {
+    public Donante actualizar(@Valid @RequestBody Donante donante) {
         return service.guardar(donante);
     }
 

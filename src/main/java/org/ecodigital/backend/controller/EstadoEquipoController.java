@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.EstadoEquipo;
 import org.ecodigital.backend.service.EstadoEquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,12 +19,12 @@ public class EstadoEquipoController {
     }
 
     @PostMapping
-    public EstadoEquipo guardar(@RequestBody EstadoEquipo estado) {
+    public EstadoEquipo guardar(@Valid @RequestBody EstadoEquipo estado) {
         return service.guardar(estado);
     }
 
     @PutMapping
-    public EstadoEquipo actualizar(@RequestBody EstadoEquipo estado) {
+    public EstadoEquipo actualizar(@Valid @RequestBody EstadoEquipo estado) {
         return service.guardar(estado);
     }
 

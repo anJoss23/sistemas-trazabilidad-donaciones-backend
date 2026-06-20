@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.HistorialCambioEstado;
 import org.ecodigital.backend.service.HistorialCambioEstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,12 +20,12 @@ public class HistorialCambioEstadoController {
     }
 
     @PostMapping
-    public HistorialCambioEstado guardar(@RequestBody HistorialCambioEstado historial) {
+    public HistorialCambioEstado guardar(@Valid @RequestBody HistorialCambioEstado historial) {
         return service.guardar(historial);
     }
 
     @PutMapping
-    public HistorialCambioEstado actualizar(@RequestBody HistorialCambioEstado historial) {
+    public HistorialCambioEstado actualizar(@Valid @RequestBody HistorialCambioEstado historial) {
         return service.guardar(historial);
     }
 

@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.RolUsuario;
 import org.ecodigital.backend.service.RolUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,12 +19,12 @@ public class RolUsuarioController {
     }
 
     @PostMapping
-    public RolUsuario guardar(@RequestBody RolUsuario rol) {
+    public RolUsuario guardar(@Valid @RequestBody RolUsuario rol) {
         return service.guardar(rol);
     }
 
     @PutMapping
-    public RolUsuario actualizar(@RequestBody RolUsuario rol) {
+    public RolUsuario actualizar(@Valid @RequestBody RolUsuario rol) {
         return service.guardar(rol);
     }
 

@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "roles_usuario")
@@ -15,6 +17,8 @@ public class RolUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rolId;
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "El nombre del rol es obligatorio")
+    @Size(max = 255, message = "El nombre del rol no debe superar 255 caracteres")
     private String nombreRol;
 
     // Constructores vacíos exigidos por JPA

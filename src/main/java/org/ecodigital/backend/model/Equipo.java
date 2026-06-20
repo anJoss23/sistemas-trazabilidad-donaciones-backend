@@ -1,6 +1,9 @@
 package org.ecodigital.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -13,20 +16,26 @@ public class Equipo {
     private Integer equipoId;
 
     @Column(name = "numero_serie", length = 100, nullable = false, unique = true)
+    @NotBlank(message = "El numero de serie es obligatorio")
+    @Size(max = 100, message = "El numero de serie no debe superar 100 caracteres")
     private String numeroSerie;
 
     @ManyToOne
     @JoinColumn(name = "tipo_equipo_id", nullable = false)
+    @NotNull(message = "El tipo de equipo es obligatorio")
     private TipoEquipo tipoEquipo;
 
     @Column(length = 100)
+    @Size(max = 100, message = "La marca no debe superar 100 caracteres")
     private String marca;
 
     @Column(length = 100)
+    @Size(max = 100, message = "El modelo no debe superar 100 caracteres")
     private String modelo;
 
     @ManyToOne
     @JoinColumn(name = "estado_actual_id", nullable = false)
+    @NotNull(message = "El estado actual es obligatorio")
     private EstadoEquipo estadoActual;
 
     @ManyToOne
@@ -40,6 +49,7 @@ public class Equipo {
     private Usuario usuarioResponsable;
 
     @Column(name = "fecha_recepcion", nullable = false)
+    @NotNull(message = "La fecha de recepcion es obligatoria")
     private Date fechaRecepcion;
 
     @Column(name = "fecha_actualizacion", insertable = false, updatable = false)

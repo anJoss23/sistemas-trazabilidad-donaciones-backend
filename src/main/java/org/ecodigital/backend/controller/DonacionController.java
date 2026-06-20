@@ -4,6 +4,7 @@ import org.ecodigital.backend.model.Donacion;
 import org.ecodigital.backend.service.DonacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,12 +20,17 @@ public class DonacionController {
     }
 
     @PostMapping
-    public Donacion guardar(@RequestBody Donacion donacion) {
+    public Donacion guardar(@Valid @RequestBody Donacion donacion) {
         return service.guardar(donacion);
     }
 
+    @PostMapping("/generar-guia")
+    public Donacion generarGuia(@Valid @RequestBody Donacion donacion) {
+        return service.generarGuia(donacion);
+    }
+
     @PutMapping
-    public Donacion actualizar(@RequestBody Donacion donacion) {
+    public Donacion actualizar(@Valid @RequestBody Donacion donacion) {
         return service.guardar(donacion);
     }
 
