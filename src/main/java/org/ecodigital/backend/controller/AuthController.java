@@ -50,7 +50,15 @@ public class AuthController {
         Usuario usuario = usuarioRepository.findByCorreo(correo);
 
         if (usuario != null && passwordEncoder.matches(contrasena, usuario.getContrasena())) {
-            String token = jwtUtil.generarToken(correo);
+
+            // --- NUEVO CÓDIGO: EXTRAEMOS EL ROL DEL USUARIO ---
+            String nombreRol = "Usuario";
+            if (usuario.getRol() != null) {
+                nombreRol = usuario.getRol().getNombreRol();
+            }
+
+            // --- CÓDIGO MODIFICADO: GENERAMOS EL TOKEN CON EL ROL ---
+            String token = jwtUtil.generarToken(correo, nombreRol);
 
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("token", token);

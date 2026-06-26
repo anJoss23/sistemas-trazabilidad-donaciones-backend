@@ -25,10 +25,11 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
-    // Método para crear el token usando el correo del usuario
-    public String generarToken(String correo) {
+    // Método Modificado: Ahora recibe el correo Y el rol del usuario
+    public String generarToken(String correo, String rol) {
         return Jwts.builder()
                 .setSubject(correo)
+                .claim("role", rol) // ¡AQUÍ INYECTAMOS EL ROL AL TOKEN!
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
